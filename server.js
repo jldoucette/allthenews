@@ -30,8 +30,8 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
-mongoose.connect("mongodb://localhost/allthenews");
+mongoose.connect("mongodb://heroku_l9pg93z0:nvc8r5tl33i9sq7fmbhe1frk3j@ds133311.mlab.com:33311/heroku_l9pg93z0");
+// mongoose.connect("mongodb://localhost/allthenews");
 var db = mongoose.connection;
 
 db.on("error", function(error) {
@@ -44,48 +44,4 @@ db.once("open", function() {
 
 app.listen(PORT, function() {
   console.log("App running on port " + PORT+"!");
-});
-
-router.get("/scrape", function(req, res) {
-  
-  request("http://www.independent.co.uk/", function(error, response, html) {
-    var $ = cheerio.load(html);
-    $("article li").each(function(i, element) {
-
-      var result = {};
-
-      result.title = $(this).children("a").text();
-      result.link = "http://www.independent.co.uk"+$(this).children("a").attr("href");
-
- 
-    Article.find({title:result.title}, function(error, doc) {
-      if (error) {
-        console.log(error);
-      }
-      if (doc.length) {
-            console.log(doc);
-        console.log("Duplicate Found");
-
-    }
-
-      else {
-      
-      var entry = new Article(result);
-      entry.save(function(err, doc) {
-
-        if (err) {
-          console.log(err);
-        }
-        else {
-          console.log(doc);
-        }
-      });
-}
-});
-  });
-  res.send("Scrape Complete");
-
-
-    
-});
 });
