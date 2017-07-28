@@ -1,0 +1,37 @@
+<div id="wrapper">
+      <h1>Article Scraper</h1>
+      <h2><i>Articles from the UK Independent</i></h2>
+      <div id="articles"></div>
+      {{#each Article}}
+
+         <div class="panel panel-default">
+
+          <div class="panel-body">
+              <h3 data-id={{this._id}}><strong>{{this.title}}</strong></h3>
+              <p><a href={{this.link}} target='_blank'>{{this.link}}</a></p>
+                    <form class="create-update-form" action="/save" method="POST">
+                <div class="form-group">
+                      <input type="hidden" name="currarticleid" value={{this._id}}>
+                    <button class="btn btn-small" id="savebutton" type="submit">Save Article</button>               
+                </div>
+              </form> 
+  
+              {{#if note}}
+            <p>{{this.note.comment}}</p>
+              {{/if}}
+    
+              <form class="create-update-form" action="/comment" method="POST">
+                <div class="form-group">
+                      <label for="bcomment">Comment</label>
+                      <textarea class="form-control" name='comment' rows='2' id='bcomment'></textarea>
+                      <input type="hidden" name="currarticleid" value={{this._id}}>
+                    <button class="btn btn-small" id="commentbutton" type="submit">Comment on Article</button>               
+                </div>
+              </form> 
+             
+          </div>
+             {{/each}}
+        </div> 
+
+      <div id="notes"></div>
+    </div>

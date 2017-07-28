@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Article Scraper</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        
+    </head>
+    <body background="background.jpg">
+        <div class="container">
+            <div class="row page-header">
+                <h1 id="hometitle">Article Scraper for the UK Independent Newspaper</h1>
+            </div>
+            <div class="row">
+                <ul class="nav nav-pills">
+                    <li role="presentation"><a href="/saved">Saved</a></li>
+                    <li role="presentation"><a href="/scrape">Scrape</a></li>
+                </ul>
+            </div>
+            <div class="row">
+                {{{body}}}
+            </div>
+        </div>
+    </body>
+</html>
